@@ -15,7 +15,7 @@ import views.LoginFrame;
 public class LabarotoryJournal {
 
     
-    final public ConnectionDB con = new ConnectionDB();
+    final public static ConnectionDB con = new ConnectionDB();
     
     /**
      * @param args the command line arguments

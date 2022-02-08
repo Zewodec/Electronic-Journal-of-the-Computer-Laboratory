@@ -26,8 +26,8 @@ public class ConnectionDB {
     final private String uPass = "root";
     
     private Connection con; // Connection to DB
-    private Statement stmt; // Statement for using query etc
-    private ResultSet rs; // ResultSet for getting info etc
+    private static Statement stmt; // Statement for using query etc
+    private static ResultSet rs; // ResultSet for getting info etc
     
     public ConnectionDB(){
         try {
@@ -65,7 +65,7 @@ public class ConnectionDB {
         
     }
     
-    public ResultSet getResultSet(){ 
+    public static ResultSet getResultSet(){ 
         return rs;
     }
     

@@ -1,0 +1,37 @@
+Tue Feb 08 11:48:51 EET 2022 : Apache Derby Network Server - 10.13.1.1 - (Unversioned directory) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Feb 08 11:48:51 EET 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instance a816c00e-017e-d8bc-503e-ffffd21a0b71 
+on database directory D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory\lab-journal with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/D:/_PROJECTS/Libs/glassfish5/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_301-b09
+user.dir=D:\_PROJECTS\Libs\glassfish5\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Feb 08 11:48:52 EET 2022:
+Shutting down instance a816c00e-017e-d8bc-503e-ffffd21a0b71 on database directory D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory\lab-journal with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Tue Feb 08 11:48:52 EET 2022 Thread[DRDAConnThread_2,5,main] (DATABASE = lab-journal), (DRDAID = {2}), Database 'lab-journal' shutdown.
+----------------------------------------------------------------
+Tue Feb 08 11:48:57 EET 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instance 6ede40af-017e-d8bc-503e-ffffd21a0b71 
+on database directory D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory\lab-journal with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/D:/_PROJECTS/Libs/glassfish5/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_301-b09
+user.dir=D:\_PROJECTS\Libs\glassfish5\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Feb 08 11:53:59 EET 2022: Shutting down Derby engine
+----------------------------------------------------------------
+Tue Feb 08 11:53:59 EET 2022:
+Shutting down instance 6ede40af-017e-d8bc-503e-ffffd21a0b71 on database directory D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory\lab-journal with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------

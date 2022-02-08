@@ -129,6 +129,17 @@ public class LoginFrame extends javax.swing.JFrame {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         String username = usernameField.getText();
         String password = passwordField.getText();
+        
+        if (LabarotoryJournal.con.checkUserAuth(username, password)) {
+            if (LabarotoryJournal.con.checkUserAdmin(username)) {
+                //TODO: Opens AdminFrame
+            }
+            else {
+                new ShowJournal().setVisible(true);
+                this.setVisible(false);
+            }
+        }
+
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

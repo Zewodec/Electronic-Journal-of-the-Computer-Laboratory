@@ -7,6 +7,7 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,7 @@ public class ConnectionDB {
     final private String uName = "root";
     final private String uPass = "root";
     
-    private Connection con; // Connection to DB
+    private static Connection con; // Connection to DB
     private static Statement stmt; // Statement for using query etc
     private static ResultSet rs; // ResultSet for getting info etc
     
@@ -103,6 +104,47 @@ public class ConnectionDB {
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public boolean checkUserAuth(String username, String password){
+    
+        try {
+            String loginQuery = "SELECT ROOT.\"Users\".\"Username\", ROOT.\"Users\".\"Password\" FROM ROOT.\"Users\" WHERE ROOT.\"Users\".\"Username\" = ? AND ROOT.\"Users\".\"Password\" = ?";
+            
+            PreparedStatement preparedLoginQuery = con.prepareStatement(loginQuery);
+            
+            preparedLoginQuery.setString(1, username);
+            preparedLoginQuery.setString(2, password);
+            
+            rs = preparedLoginQuery.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (rs != null) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean checkUserAdmin(String username){
+    
+        try {
+            String loginQuery = "SELECT ROOT.\"Users\".\"Username\", ROOT.\"Users\".\"IsAdmin\" FROM ROOT.\"Users\" WHERE ROOT.\"Users\".\"Username\" = ?";
+            
+            PreparedStatement preparedLoginQuery = con.prepareStatement(loginQuery);
+            
+            preparedLoginQuery.setString(1, username);
+            
+            rs = preparedLoginQuery.executeQuery();
+            
+            rs.next();
+            
+            return rs.getBoolean("IsAdmin");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
 }

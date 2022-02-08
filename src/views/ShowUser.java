@@ -25,7 +25,7 @@ public class ShowUser extends javax.swing.JFrame {
     
     public void InitGrid() throws SQLException{
     User_Grid.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
-    int id = ConnectionDB.Id();
+    
     
     }
 

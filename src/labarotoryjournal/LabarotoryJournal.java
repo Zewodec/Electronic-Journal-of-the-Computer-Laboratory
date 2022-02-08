@@ -5,17 +5,24 @@
  */
 package labarotoryjournal;
 
+import database.ConnectionDB;
+import views.LoginFrame;
+
 /**
  *
  * @author Adam
  */
 public class LabarotoryJournal {
 
+    
+    final public ConnectionDB con = new ConnectionDB();
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
     }
     
 }

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 /**
  * Connection to database
  * @author Adam
+ * @version 0.1.0
  */
 public class ConnectionDB {
     

@@ -12,7 +12,7 @@ import labarotoryjournal.LabarotoryJournal;
  * @author Adam
  */
 public class LoginFrame extends javax.swing.JFrame {
-    boolean isAdmin = false;
+    private static boolean isAdmin = false;
     
     ShowJournal showJournal = new ShowJournal();
     
@@ -21,6 +21,10 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+    }
+    
+    public static boolean getIsAdmin(){
+        return isAdmin;
     }
 
     /**
@@ -121,17 +125,9 @@ public class LoginFrame extends javax.swing.JFrame {
         String password = passwordField.getText();
         
         if (LabarotoryJournal.con.checkUserAuth(username, password)) {
-            isAdmin = LabarotoryJournal.con.checkUserAdmin(username)
-                //TODO: Opens AdminFrame
-                isAdmin = true;
+            isAdmin = LabarotoryJournal.con.checkUserAdmin(username);
                 new MenuFrame().setVisible(true);
-            }
-            else {
-                isAdmin = false;
-                new MenuFrame(IsAdmin).setVisible(true);
-             
                 this.setVisible(false);
-            }
         }
 
     }//GEN-LAST:event_LoginButtonActionPerformed

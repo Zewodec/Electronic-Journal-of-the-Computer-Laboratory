@@ -9,7 +9,9 @@ package views;
  * @author olegk
  */
 public class MenuFrame extends javax.swing.JFrame {
-
+    
+    private boolean isAdmin = LoginFrame.getIsAdmin();
+    
     /**
      * Creates new form MenuFrame
      */
@@ -116,7 +118,7 @@ public class MenuFrame extends javax.swing.JFrame {
 
     private void LoginWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginWindowActionPerformed
         // TODO add your handling code here:
-        new LoginFrame().isAdmin = false;
+//        new LoginFrame().isAdmin = false;
         new LoginFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_LoginWindowActionPerformed

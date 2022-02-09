@@ -12,3 +12,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+lab-journal/db.lck
+derby.log

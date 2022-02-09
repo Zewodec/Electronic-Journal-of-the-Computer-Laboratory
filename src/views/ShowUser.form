@@ -31,21 +31,30 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="NextRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="PreviousRecord" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="207" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="LastRecord" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="BackToMenu" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="FirsrRecord" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="DeleteRecord" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddRecord" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="107" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                  <EmptySpace pref="107" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -53,23 +62,26 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="334" max="32767" attributes="0"/>
+              <EmptySpace pref="338" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NextRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeleteRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FirsrRecord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PreviousRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BackToMenu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="305" max="-2" attributes="0"/>
-                  <EmptySpace pref="116" max="32767" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -86,15 +98,21 @@
         <Component class="javax.swing.JTable" name="User_Grid">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="4">
+                <Column editable="true" title="Id" type="java.lang.Object"/>
+                <Column editable="true" title="Username" type="java.lang.Object"/>
+                <Column editable="true" title="Password" type="java.lang.Object"/>
+                <Column editable="true" title="IsAdmin" type="java.lang.Object"/>
+                <Column editable="true" title="Last_Login" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -125,25 +143,61 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="NextRecord">
       <Properties>
         <Property name="label" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NextRecordActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="PreviousRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43f;&#x435;&#x440;&#x435;&#x434;&#x43d;&#x456;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PreviousRecordActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="DeleteRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteRecordActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="AddRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x431;&#x430;&#x432;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="FirsrRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41f;&#x435;&#x440;&#x448;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirsrRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="LastRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41e;&#x441;&#x442;&#x430;&#x43d;&#x43d;&#x456;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LastRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BackToMenu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x437;&#x430;&#x434; &#x432; &#x43c;&#x435;&#x43d;&#x44e;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackToMenuActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

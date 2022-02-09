@@ -27,14 +27,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="800" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="NextRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="PreviousRecord" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="FirstRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="248" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="AddRecord" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeleteRecord" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,9 +53,17 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="319" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="NextRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FirstRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="PreviousRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeleteRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="0" pref="148" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -73,15 +91,50 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="NextRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NextRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="PreviousRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43f;&#x435;&#x440;&#x435;&#x434;&#x43d;&#x456;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PreviousRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="FirstRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41f;&#x435;&#x440;&#x448;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="LastRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41e;&#x441;&#x442;&#x430;&#x43d;&#x43d;&#x456;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="AddRecord">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+        <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x431;&#x430;&#x432;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="DeleteRecord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteRecordActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

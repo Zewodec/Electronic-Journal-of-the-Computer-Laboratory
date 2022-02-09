@@ -28,8 +28,12 @@ public class ShowJournal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        NextRecord = new javax.swing.JButton();
+        PreviousRecord = new javax.swing.JButton();
+        FirstRecord = new javax.swing.JButton();
+        LastRecord = new javax.swing.JButton();
+        AddRecord = new javax.swing.JButton();
+        DeleteRecord = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Journal(Admin)");
@@ -48,35 +52,102 @@ public class ShowJournal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Наступний запис");
+        NextRecord.setText("Наступний запис");
+        NextRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextRecordActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Наступний запис");
+        PreviousRecord.setText("Попередній запис");
+        PreviousRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreviousRecordActionPerformed(evt);
+            }
+        });
+
+        FirstRecord.setText("Перший запис");
+        FirstRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstRecordActionPerformed(evt);
+            }
+        });
+
+        LastRecord.setText("Останній запис");
+
+        AddRecord.setText("Добавити запис");
+        AddRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddRecordActionPerformed(evt);
+            }
+        });
+
+        DeleteRecord.setText("Видалити запис");
+        DeleteRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteRecordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(NextRecord)
+                    .addComponent(PreviousRecord))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FirstRecord)
+                    .addComponent(LastRecord))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddRecord)
+                    .addComponent(DeleteRecord))
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NextRecord)
+                    .addComponent(FirstRecord)
+                    .addComponent(AddRecord))
                 .addGap(31, 31, 31)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PreviousRecord)
+                    .addComponent(LastRecord)
+                    .addComponent(DeleteRecord))
                 .addGap(0, 148, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PreviousRecordActionPerformed
+
+    private void NextRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NextRecordActionPerformed
+
+    private void FirstRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstRecordActionPerformed
+
+    private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddRecordActionPerformed
+
+    private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteRecordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,8 +185,12 @@ public class ShowJournal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton AddRecord;
+    private javax.swing.JButton DeleteRecord;
+    private javax.swing.JButton FirstRecord;
+    private javax.swing.JButton LastRecord;
+    private javax.swing.JButton NextRecord;
+    private javax.swing.JButton PreviousRecord;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

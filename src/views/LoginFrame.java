@@ -121,7 +121,7 @@ public class LoginFrame extends javax.swing.JFrame {
         String password = passwordField.getText();
         
         if (LabarotoryJournal.con.checkUserAuth(username, password)) {
-            if (LabarotoryJournal.con.checkUserAdmin(username)) {
+            isAdmin = LabarotoryJournal.con.checkUserAdmin(username)
                 //TODO: Opens AdminFrame
                 isAdmin = true;
                 new MenuFrame().setVisible(true);

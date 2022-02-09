@@ -12,7 +12,10 @@ import labarotoryjournal.LabarotoryJournal;
  * @author Adam
  */
 public class LoginFrame extends javax.swing.JFrame {
-
+    boolean isAdmin = false;
+    
+    ShowJournal showJournal = new ShowJournal();
+    
     /**
      * Creates new form LoginFrame
      */
@@ -133,9 +136,15 @@ public class LoginFrame extends javax.swing.JFrame {
         if (LabarotoryJournal.con.checkUserAuth(username, password)) {
             if (LabarotoryJournal.con.checkUserAdmin(username)) {
                 //TODO: Opens AdminFrame
+                isAdmin = true;
+                showJournal.setVisible(true);
+               
+                showJournal.setVisibleButtons();        
             }
             else {
+                isAdmin = false;
                 new ShowJournal().setVisible(true);
+             
                 this.setVisible(false);
             }
         }

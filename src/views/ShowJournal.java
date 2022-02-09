@@ -4,6 +4,8 @@
  */
 package views;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author olegk
@@ -15,6 +17,9 @@ public class ShowJournal extends javax.swing.JFrame {
      */
     public ShowJournal() {
         initComponents();
+        AddRecord.setVisible(false);
+        DeleteRecord.setVisible(false);
+
     }
 
     /**
@@ -37,19 +42,26 @@ public class ShowJournal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Journal(Admin)");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Item_Number", "Description", "Date_Add", "Date_Last_Update"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         NextRecord.setText("Наступний запис");
@@ -128,7 +140,7 @@ public class ShowJournal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PreviousRecordActionPerformed
@@ -194,4 +206,10 @@ public class ShowJournal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public void setVisibleButtons(){
+        AddRecord.setVisible(true);
+        DeleteRecord.setVisible(true);
+    }
+
 }

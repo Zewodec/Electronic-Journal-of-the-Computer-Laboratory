@@ -128,7 +128,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
             else {
                 isAdmin = false;
-                new MenuFrame().setVisible(true);
+                new MenuFrame(IsAdmin).setVisible(true);
              
                 this.setVisible(false);
             }

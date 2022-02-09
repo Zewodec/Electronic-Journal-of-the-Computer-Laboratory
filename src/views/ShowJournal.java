@@ -39,6 +39,7 @@ public class ShowJournal extends javax.swing.JFrame {
         LastRecord = new javax.swing.JButton();
         AddRecord = new javax.swing.JButton();
         DeleteRecord = new javax.swing.JButton();
+        BackToMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Journal(Admin)");
@@ -101,6 +102,13 @@ public class ShowJournal extends javax.swing.JFrame {
             }
         });
 
+        BackToMenu.setText("Назад в меню");
+        BackToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,17 +117,22 @@ public class ShowJournal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NextRecord)
-                    .addComponent(PreviousRecord))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FirstRecord)
-                    .addComponent(LastRecord))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddRecord)
-                    .addComponent(DeleteRecord))
-                .addGap(126, 126, 126))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NextRecord)
+                            .addComponent(PreviousRecord))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FirstRecord)
+                            .addComponent(LastRecord))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddRecord)
+                            .addComponent(DeleteRecord))
+                        .addGap(126, 126, 126))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BackToMenu)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +148,9 @@ public class ShowJournal extends javax.swing.JFrame {
                     .addComponent(PreviousRecord)
                     .addComponent(LastRecord)
                     .addComponent(DeleteRecord))
-                .addGap(0, 148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(BackToMenu)
+                .addGap(54, 54, 54))
         );
 
         pack();
@@ -160,6 +175,12 @@ public class ShowJournal extends javax.swing.JFrame {
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteRecordActionPerformed
+
+    private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
+        // TODO add your handling code here:
+        new MenuFrame().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BackToMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +219,7 @@ public class ShowJournal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddRecord;
+    private javax.swing.JButton BackToMenu;
     private javax.swing.JButton DeleteRecord;
     private javax.swing.JButton FirstRecord;
     private javax.swing.JButton LastRecord;

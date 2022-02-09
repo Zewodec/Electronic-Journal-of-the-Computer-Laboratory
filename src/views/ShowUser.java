@@ -48,6 +48,7 @@ public class ShowUser extends javax.swing.JFrame {
         AddRecord = new javax.swing.JButton();
         FirsrRecord = new javax.swing.JButton();
         LastRecord = new javax.swing.JButton();
+        BackToMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ShowUserTable");
@@ -64,15 +65,7 @@ public class ShowUser extends javax.swing.JFrame {
             new String [] {
                 "Id", "Username", "Password", "IsAdmin", "Last_Login"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         User_Grid.setName("UserTable"); // NOI18N
         jScrollPane1.setViewportView(User_Grid);
 
@@ -118,6 +111,13 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        BackToMenu.setText("Назад в меню");
+        BackToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,23 +129,26 @@ public class ShowUser extends javax.swing.JFrame {
                     .addComponent(PreviousRecord))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LastRecord)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LastRecord)
+                        .addGap(18, 18, 18)
+                        .addComponent(BackToMenu))
                     .addComponent(FirsrRecord))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DeleteRecord)
                     .addComponent(AddRecord))
                 .addGap(66, 66, 66))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(64, Short.MAX_VALUE)
+                    .addContainerGap(107, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(65, Short.MAX_VALUE)))
+                    .addContainerGap(107, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(334, Short.MAX_VALUE)
+                .addContainerGap(338, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextRecord)
                     .addComponent(DeleteRecord)
@@ -154,13 +157,14 @@ public class ShowUser extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviousRecord)
                     .addComponent(AddRecord)
-                    .addComponent(LastRecord))
+                    .addComponent(LastRecord)
+                    .addComponent(BackToMenu))
                 .addGap(31, 31, 31))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(8, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(116, Short.MAX_VALUE)))
+                    .addContainerGap(118, Short.MAX_VALUE)))
         );
 
         pack();
@@ -189,6 +193,12 @@ public class ShowUser extends javax.swing.JFrame {
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddRecordActionPerformed
+
+    private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
+        // TODO add your handling code here:
+        new MenuFrame().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BackToMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +239,7 @@ public class ShowUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddRecord;
+    private javax.swing.JButton BackToMenu;
     private javax.swing.JButton DeleteRecord;
     private javax.swing.JButton FirsrRecord;
     private javax.swing.JButton LastRecord;

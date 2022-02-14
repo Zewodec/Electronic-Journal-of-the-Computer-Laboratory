@@ -4,6 +4,10 @@
  */
 package views;
 
+import database.ConnectionDB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -87,6 +91,11 @@ public class ShowJournal extends javax.swing.JFrame {
         });
 
         LastRecord.setText("Останній запис");
+        LastRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastRecordActionPerformed(evt);
+            }
+        });
 
         AddRecord.setText("Добавити запис");
         AddRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -158,14 +167,41 @@ public class ShowJournal extends javax.swing.JFrame {
     
     private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
         // TODO add your handling code here:
+                        try {
+        if(ConnectionDB.getResultSet().previous()){
+            
+                int Id = ConnectionDB.getResultSet().getInt("Id");
+                System.out.print(Id);
+        }
+                        } catch (SQLException ex) {
+                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_PreviousRecordActionPerformed
 
     private void NextRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextRecordActionPerformed
         // TODO add your handling code here:
+                        try {
+        if(ConnectionDB.getResultSet().next()){
+            
+                int Id = ConnectionDB.getResultSet().getInt("Id");
+                System.out.print(Id);
+        }
+                        } catch (SQLException ex) {
+                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_NextRecordActionPerformed
 
     private void FirstRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstRecordActionPerformed
         // TODO add your handling code here:
+                        try {
+        if(ConnectionDB.getResultSet().first()){
+            
+                int Id = ConnectionDB.getResultSet().getInt("Id");
+                System.out.print(Id);
+        }
+                        } catch (SQLException ex) {
+                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_FirstRecordActionPerformed
 
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
@@ -181,6 +217,19 @@ public class ShowJournal extends javax.swing.JFrame {
         new MenuFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BackToMenuActionPerformed
+
+    private void LastRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastRecordActionPerformed
+        // TODO add your handling code here:
+                        try {
+        if(ConnectionDB.getResultSet().last()){
+            
+                int Id = ConnectionDB.getResultSet().getInt("Id");
+                System.out.print(Id);
+        }
+                        } catch (SQLException ex) {
+                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_LastRecordActionPerformed
 
     /**
      * @param args the command line arguments

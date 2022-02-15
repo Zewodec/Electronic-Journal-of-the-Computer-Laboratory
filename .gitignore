@@ -1,3 +1,8 @@
+lab-journal/log/log.ctrl
+lab-journal/log/log1.dat
+lab-journal/log/logmirror.ctrl
+derby.log
+
 ### NetBeans ###
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
@@ -7,8 +12,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
-lab-journal/log/log.ctrl
-lab-journal/log/log1.dat
-lab-journal/log/logmirror.ctrl
+lab-journal/db.lck
 derby.log

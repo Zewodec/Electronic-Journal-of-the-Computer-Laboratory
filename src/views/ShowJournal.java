@@ -9,21 +9,24 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author olegk
+ * @author Konovalov
  */
 public class ShowJournal extends javax.swing.JFrame {
 
+    ConnectionDB connectionDB;
+    
     /**
      * Creates new form ShowJournal
      */
     public ShowJournal() {
         initComponents();
+        connectionDB = new ConnectionDB();
         AddRecord.setVisible(false);
         DeleteRecord.setVisible(false);
-
     }
 
     /**
@@ -36,7 +39,7 @@ public class ShowJournal extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JournalTable = new javax.swing.JTable();
         NextRecord = new javax.swing.JButton();
         PreviousRecord = new javax.swing.JButton();
         FirstRecord = new javax.swing.JButton();
@@ -47,8 +50,13 @@ public class ShowJournal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Journal(Admin)");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JournalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -67,7 +75,7 @@ public class ShowJournal extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JournalTable);
 
         NextRecord.setText("Наступний запис");
         NextRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -122,114 +130,130 @@ public class ShowJournal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NextRecord)
+                        .addContainerGap()
+                        .addComponent(BackToMenu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FirstRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LastRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NextRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PreviousRecord))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FirstRecord)
-                            .addComponent(LastRecord))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
+                        .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AddRecord)
-                            .addComponent(DeleteRecord))
-                        .addGap(126, 126, 126))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BackToMenu)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DeleteRecord)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NextRecord)
-                    .addComponent(FirstRecord)
-                    .addComponent(AddRecord))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PreviousRecord)
-                    .addComponent(LastRecord)
-                    .addComponent(DeleteRecord))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FirstRecord)
+                            .addComponent(AddRecord))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LastRecord)
+                            .addComponent(DeleteRecord)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(NextRecord)
+                        .addGap(31, 31, 31)
+                        .addComponent(PreviousRecord)))
+                .addGap(43, 43, 43)
                 .addComponent(BackToMenu)
-                .addGap(54, 54, 54))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
-        // TODO add your handling code here:
-                        try {
-        if(ConnectionDB.getResultSet().previous()){
-            
+        try {
+            if (ConnectionDB.getResultSet().previous()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_PreviousRecordActionPerformed
 
     private void NextRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextRecordActionPerformed
-        // TODO add your handling code here:
-                        try {
-        if(ConnectionDB.getResultSet().next()){
-            
+        try {
+            if (ConnectionDB.getResultSet().next()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_NextRecordActionPerformed
 
     private void FirstRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstRecordActionPerformed
-        // TODO add your handling code here:
-                        try {
-        if(ConnectionDB.getResultSet().first()){
-            
+        try {
+            if (ConnectionDB.getResultSet().first()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_FirstRecordActionPerformed
 
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_DeleteRecordActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
-        // TODO add your handling code here:
         new MenuFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BackToMenuActionPerformed
 
     private void LastRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastRecordActionPerformed
         // TODO add your handling code here:
-                        try {
-        if(ConnectionDB.getResultSet().last()){
-            
+        try {
+            if (ConnectionDB.getResultSet().last()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_LastRecordActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (LoginFrame.getIsAdmin()) {
+            AddRecord.setVisible(true);
+            DeleteRecord.setVisible(true);
+        } else {
+            AddRecord.setVisible(false);
+            DeleteRecord.setVisible(false);
+        }
+        
+        String showItemsQuery = "SELECT ROOT.\"Journal\".\"Id\", ROOT.\"Journal\".\"Item_Number\", ROOT.\"Journal\".\"Description\", ROOT.\"Journal\".\"Date_Add\", ROOT.\"Journal\".\"Date_Last_Update\" FROM ROOT.\"Journal\"";
+        connectionDB.SelectQuery(showItemsQuery);
+        JournalTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -271,16 +295,11 @@ public class ShowJournal extends javax.swing.JFrame {
     private javax.swing.JButton BackToMenu;
     private javax.swing.JButton DeleteRecord;
     private javax.swing.JButton FirstRecord;
+    private javax.swing.JTable JournalTable;
     private javax.swing.JButton LastRecord;
     private javax.swing.JButton NextRecord;
     private javax.swing.JButton PreviousRecord;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    public void setVisibleButtons(){
-        AddRecord.setVisible(true);
-        DeleteRecord.setVisible(true);
-    }
 
 }

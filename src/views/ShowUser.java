@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package views;
+
 import database.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,21 +17,16 @@ import javax.swing.table.TableModel;
  */
 public class ShowUser extends javax.swing.JFrame {
 
-    
-    
     /**
      * Creates new form ShowUser
      */
     public ShowUser() {
         initComponents();
-        AddRecord.setVisible(false);
-        DeleteRecord.setVisible(false);
     }
-    
-    public void InitGrid() throws SQLException{
-    User_Grid.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
-    
-    
+
+    public void InitGrid() throws SQLException {
+        User_Grid.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
+
     }
 
     /**
@@ -134,16 +130,15 @@ public class ShowUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NextRecord)
-                    .addComponent(PreviousRecord))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PreviousRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NextRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LastRecord)
-                        .addGap(18, 18, 18)
-                        .addComponent(BackToMenu))
-                    .addComponent(FirsrRecord))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LastRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FirsrRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(BackToMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DeleteRecord)
@@ -175,53 +170,53 @@ public class ShowUser extends javax.swing.JFrame {
     private void NextRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextRecordActionPerformed
         // TODO add your handling code here:
         try {
-        if(ConnectionDB.getResultSet().next()){
-            
+            if (ConnectionDB.getResultSet().next()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_NextRecordActionPerformed
 
     private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
         // TODO add your handling code here:
-                try {
-        if(ConnectionDB.getResultSet().previous()){
-            
+        try {
+            if (ConnectionDB.getResultSet().previous()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_PreviousRecordActionPerformed
 
     private void FirsrRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirsrRecordActionPerformed
         // TODO add your handling code here:
-                try {
-        if(ConnectionDB.getResultSet().first()){
-            
+        try {
+            if (ConnectionDB.getResultSet().first()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_FirsrRecordActionPerformed
 
     private void LastRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastRecordActionPerformed
         // TODO add your handling code here:
-                try {
-        if(ConnectionDB.getResultSet().last()){
-            
+        try {
+            if (ConnectionDB.getResultSet().last()) {
+
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
-        }
-                        } catch (SQLException ex) {
-                Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_LastRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
@@ -230,8 +225,8 @@ public class ShowUser extends javax.swing.JFrame {
 
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
@@ -266,8 +261,6 @@ public class ShowUser extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ShowUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

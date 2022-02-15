@@ -28,39 +28,45 @@ public class MenuFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        UserFrame = new javax.swing.JButton();
-        JournalFrame = new javax.swing.JButton();
-        LoginWindow = new javax.swing.JButton();
-        Exit = new javax.swing.JButton();
+        UserFrameOpenButton = new javax.swing.JButton();
+        JournalFrameOpenButton = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
+        ExitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        UserFrame.setText("користувачі");
-        UserFrame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserFrameActionPerformed(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
-        JournalFrame.setText("Журнал");
-        JournalFrame.addActionListener(new java.awt.event.ActionListener() {
+        UserFrameOpenButton.setText("Користувачі");
+        UserFrameOpenButton.setEnabled(false);
+        UserFrameOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JournalFrameActionPerformed(evt);
+                UserFrameOpenButtonActionPerformed(evt);
             }
         });
 
-        LoginWindow.setText("Вийти з аккаунту");
-        LoginWindow.addActionListener(new java.awt.event.ActionListener() {
+        JournalFrameOpenButton.setText("Журнал");
+        JournalFrameOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginWindowActionPerformed(evt);
+                JournalFrameOpenButtonActionPerformed(evt);
             }
         });
 
-        Exit.setText("Вихід з програми");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
+        LogOutButton.setText("Вийти з аккаунту");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
+                LogOutButtonActionPerformed(evt);
+            }
+        });
+
+        ExitButton.setText("Вихід з програми");
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonActionPerformed(evt);
             }
         });
 
@@ -72,17 +78,19 @@ public class MenuFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UserFrame)
-                    .addComponent(LoginWindow))
+                .addComponent(LogOutButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JournalFrame)
-                    .addComponent(Exit))
+                .addComponent(ExitButton)
                 .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JournalFrameOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(jLabel1))
+                        .addComponent(UserFrameOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,43 +98,48 @@ public class MenuFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(JournalFrameOpenButton)
+                .addGap(32, 32, 32)
+                .addComponent(UserFrameOpenButton)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserFrame)
-                    .addComponent(JournalFrame))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoginWindow)
-                    .addComponent(Exit))
+                    .addComponent(LogOutButton)
+                    .addComponent(ExitButton))
                 .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UserFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserFrameActionPerformed
-        // TODO add your handling code here:
+    private void UserFrameOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserFrameOpenButtonActionPerformed
         new ShowUser().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_UserFrameActionPerformed
+    }//GEN-LAST:event_UserFrameOpenButtonActionPerformed
 
-    private void JournalFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JournalFrameActionPerformed
-        // TODO add your handling code here:
+    private void JournalFrameOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JournalFrameOpenButtonActionPerformed
         new ShowJournal().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_JournalFrameActionPerformed
+    }//GEN-LAST:event_JournalFrameOpenButtonActionPerformed
 
-    private void LoginWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginWindowActionPerformed
-        // TODO add your handling code here:
-//        new LoginFrame().isAdmin = false;
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         new LoginFrame().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_LoginWindowActionPerformed
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        // TODO add your handling code here:
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         System.exit(-1);
-    }//GEN-LAST:event_ExitActionPerformed
+    }//GEN-LAST:event_ExitButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (!LoginFrame.getIsAdmin()) {
+            UserFrameOpenButton.setVisible(false);
+            UserFrameOpenButton.setEnabled(false);
+        } else {
+            UserFrameOpenButton.setVisible(true);
+            UserFrameOpenButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -164,10 +177,10 @@ public class MenuFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Exit;
-    private javax.swing.JButton JournalFrame;
-    private javax.swing.JButton LoginWindow;
-    private javax.swing.JButton UserFrame;
+    private javax.swing.JButton ExitButton;
+    private javax.swing.JButton JournalFrameOpenButton;
+    private javax.swing.JButton LogOutButton;
+    private javax.swing.JButton UserFrameOpenButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

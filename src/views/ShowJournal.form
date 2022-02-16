@@ -48,10 +48,7 @@
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="AddRecord" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="DeleteRecord" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="DeleteRecord" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

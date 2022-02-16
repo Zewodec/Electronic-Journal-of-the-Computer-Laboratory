@@ -17,7 +17,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class ShowJournal extends javax.swing.JFrame {
 
-    ConnectionDB connectionDB;
+    public static ConnectionDB connectionDB;
     
     /**
      * Creates new form ShowJournal
@@ -216,7 +216,7 @@ public class ShowJournal extends javax.swing.JFrame {
     }//GEN-LAST:event_FirstRecordActionPerformed
 
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
-
+        new AddSubject().setVisible(true);
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
@@ -250,7 +250,7 @@ public class ShowJournal extends javax.swing.JFrame {
             DeleteRecord.setVisible(false);
         }
         
-        String showItemsQuery = "SELECT ROOT.\"Journal\".\"Id\", ROOT.\"Journal\".\"Item_Number\", ROOT.\"Journal\".\"Description\", ROOT.\"Journal\".\"Date_Add\", ROOT.\"Journal\".\"Date_Last_Update\" FROM ROOT.\"Journal\"";
+        String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
         connectionDB.SelectQuery(showItemsQuery);
         JournalTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
     }//GEN-LAST:event_formWindowOpened

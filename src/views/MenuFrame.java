@@ -6,7 +6,7 @@ package views;
 
 /**
  *
- * @author olegk
+ * @author Konovalov
  */
 public class MenuFrame extends javax.swing.JFrame {
     
@@ -128,7 +128,7 @@ public class MenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LogOutButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
-        System.exit(-1);
+        System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -8,7 +8,6 @@ import database.ConnectionDB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -17,8 +16,8 @@ import net.proteanit.sql.DbUtils;
  */
 public class ShowJournal extends javax.swing.JFrame {
 
-    ConnectionDB connectionDB;
-    
+    public static ConnectionDB connectionDB;
+
     /**
      * Creates new form ShowJournal
      */
@@ -27,6 +26,21 @@ public class ShowJournal extends javax.swing.JFrame {
         connectionDB = new ConnectionDB();
         AddRecord.setVisible(false);
         DeleteRecord.setVisible(false);
+        
+        Thread updateTable = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {                    
+                    try {
+                        UpdateTable();
+                        Thread.sleep(10000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ShowJournal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        updateTable.start();
     }
 
     /**
@@ -70,9 +84,22 @@ public class ShowJournal extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        JournalTable.setEnabled(false);
+        JournalTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                JournalTableMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(JournalTable);
@@ -148,9 +175,7 @@ public class ShowJournal extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AddRecord)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(DeleteRecord)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(DeleteRecord))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -216,7 +241,7 @@ public class ShowJournal extends javax.swing.JFrame {
     }//GEN-LAST:event_FirstRecordActionPerformed
 
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
-
+        new AddSubject().setVisible(true);
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
@@ -249,11 +274,17 @@ public class ShowJournal extends javax.swing.JFrame {
             AddRecord.setVisible(false);
             DeleteRecord.setVisible(false);
         }
-        
-        String showItemsQuery = "SELECT ROOT.\"Journal\".\"Id\", ROOT.\"Journal\".\"Item_Number\", ROOT.\"Journal\".\"Description\", ROOT.\"Journal\".\"Date_Add\", ROOT.\"Journal\".\"Date_Last_Update\" FROM ROOT.\"Journal\"";
+    }//GEN-LAST:event_formWindowOpened
+
+    private void JournalTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JournalTableMouseEntered
+        UpdateTable();
+    }//GEN-LAST:event_JournalTableMouseEntered
+
+    public void UpdateTable() {
+        String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
         connectionDB.SelectQuery(showItemsQuery);
         JournalTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
-    }//GEN-LAST:event_formWindowOpened
+    }
 
     /**
      * @param args the command line arguments

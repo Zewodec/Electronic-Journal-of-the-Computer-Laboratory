@@ -17,15 +17,15 @@ import java.util.logging.Logger;
 /**
  * Connection to database
  *
- * @author Adam
- * @version 0.1.0
+ * @author Konovalov
+ * @version 0.2.0
  */
 public class ConnectionDB {
 
     // Host data to connect
-    final private String host = "jdbc:derby://localhost:1527/lab-journal";
-    final private String uName = "root";
-    final private String uPass = "root";
+    final private String host = "jdbc:mysql://129.159.253.88:3306/kursova";
+    final private String uName = "kursova";
+    final private String uPass = "1234";
 
     private static Connection con; // Connection to DB
     private static Statement stmt; // Statement for using query etc
@@ -50,8 +50,6 @@ public class ConnectionDB {
     public void SelectQuery(String query) {
         try {
             rs = stmt.executeQuery(query);
-            //Get First element in ResultSet
-            rs.next();
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,7 +108,7 @@ public class ConnectionDB {
     public boolean checkUserAuth(String username, String password) {
 
         try {
-            String loginQuery = "SELECT ROOT.\"USERS\".\"USERNAME\", ROOT.\"USERS\".\"PASSWORD\" FROM ROOT.\"USERS\" WHERE ROOT.\"USERS\".\"USERNAME\" = ? AND ROOT.\"USERS\".\"PASSWORD\" = ?";
+            String loginQuery = "SELECT Username, Password FROM users WHERE Username = ? AND Password = ?";
 
             PreparedStatement preparedLoginQuery = con.prepareStatement(loginQuery);
 
@@ -127,11 +125,26 @@ public class ConnectionDB {
         }
         return false;
     }
+    
+    public void AddJournalRecord(int ItemNumber, String Description){
+        
+        try {
+            String addRecordQuery = "INSERT  INTO JOURNAL (ItemNum, Description) VALUES(?,?)";
+            PreparedStatement preparedStatement = con.prepareStatement(addRecordQuery);
+            
+            preparedStatement.setInt(1, ItemNumber);
+            preparedStatement.setString(2, Description);
+            
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+    }
 
     public int checkUserAdmin(String username, String password) {
         int value = 0;
         try {
-//            String loginQuery = "SELECT ROOT.\"USERS\".\"USERNAME\", ROOT.\"USERS\".\"ISADMIN\" FROM ROOT.\"USERS\" WHERE ROOT.\"USERS\".\"USERNAME\" = ? AND ROOT.\"USERS\".\"PASSWORD\" = ?";
         String loginQuery = "SELECT USERNAME, ISADMIN FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
             PreparedStatement preparedLoginQuery = con.prepareStatement(loginQuery);

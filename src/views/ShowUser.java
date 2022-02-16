@@ -13,7 +13,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author Oleh
+ * @author Konovalov
  */
 public class ShowUser extends javax.swing.JFrame {
 

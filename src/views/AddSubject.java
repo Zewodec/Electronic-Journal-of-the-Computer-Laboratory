@@ -108,6 +108,7 @@ public class AddSubject extends javax.swing.JFrame {
         String describtion = DescribtionTextArea.getText();
         
         ShowJournal.connectionDB.AddJournalRecord(itemNumber, describtion);
+        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -50,8 +50,6 @@ public class ConnectionDB {
     public void SelectQuery(String query) {
         try {
             rs = stmt.executeQuery(query);
-            //Get First element in ResultSet
-            rs.next();
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,7 +145,6 @@ public class ConnectionDB {
     public int checkUserAdmin(String username, String password) {
         int value = 0;
         try {
-//            String loginQuery = "SELECT ROOT.\"USERS\".\"USERNAME\", ROOT.\"USERS\".\"ISADMIN\" FROM ROOT.\"USERS\" WHERE ROOT.\"USERS\".\"USERNAME\" = ? AND ROOT.\"USERS\".\"PASSWORD\" = ?";
         String loginQuery = "SELECT USERNAME, ISADMIN FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
             PreparedStatement preparedLoginQuery = con.prepareStatement(loginQuery);

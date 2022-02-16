@@ -10,7 +10,7 @@ package views;
  */
 public class MenuFrame extends javax.swing.JFrame {
     
-    private boolean isAdmin = LoginFrame.getIsAdmin();
+    private int isAdmin = LoginFrame.getIsAdmin();
     
     /**
      * Creates new form MenuFrame
@@ -132,10 +132,10 @@ public class MenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (!LoginFrame.getIsAdmin()) {
+        if (LoginFrame.getIsAdmin() == 0) {
             UserFrameOpenButton.setVisible(false);
             UserFrameOpenButton.setEnabled(false);
-        } else {
+        } else if (LoginFrame.getIsAdmin() == 1) {
             UserFrameOpenButton.setVisible(true);
             UserFrameOpenButton.setEnabled(true);
         }

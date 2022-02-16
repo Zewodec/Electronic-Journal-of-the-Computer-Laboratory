@@ -242,10 +242,10 @@ public class ShowJournal extends javax.swing.JFrame {
     }//GEN-LAST:event_LastRecordActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (LoginFrame.getIsAdmin()) {
+        if (LoginFrame.getIsAdmin() == 1) {
             AddRecord.setVisible(true);
             DeleteRecord.setVisible(true);
-        } else {
+        } else if (LoginFrame.getIsAdmin() == 0) {
             AddRecord.setVisible(false);
             DeleteRecord.setVisible(false);
         }

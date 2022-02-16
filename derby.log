@@ -1,7 +1,7 @@
-Thu Feb 10 00:35:16 EET 2022 : Apache Derby Network Server - 10.13.1.1 - (Unversioned directory) started and ready to accept connections on port 1527
+Wed Feb 16 01:53:15 EET 2022 : Apache Derby Network Server - 10.13.1.1 - (Unversioned directory) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Feb 10 00:35:17 EET 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instance a816c00e-017e-e0a0-576d-ffffd21a0b71 
+Wed Feb 16 01:53:15 EET 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instance a816c00e-017e-ffcd-e176-ffffd21a0b71 
 on database directory D:\_PROJECTS\Electronic-Journal-of-the-Computer-Laboratory\lab-journal with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
 Loaded from file:/D:/_PROJECTS/Libs/glassfish5/javadb/lib/derby.jar
 java.vendor=Oracle Corporation

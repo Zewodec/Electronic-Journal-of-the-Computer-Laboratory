@@ -70,7 +70,7 @@ public class ConnectionDB {
     }
 
     // Set first element in Result Set
-    public void setResultSetToFirstElement() {
+    public static void setResultSetToFirstElement() {
         try {
             rs.first();
         } catch (SQLException ex) {
@@ -79,7 +79,7 @@ public class ConnectionDB {
     }
 
     // Set last element in Result Set
-    public void setResultSetToLastElement() {
+    public static void setResultSetToLastElement() {
         try {
             rs.last();
         } catch (SQLException ex) {
@@ -88,7 +88,7 @@ public class ConnectionDB {
     }
 
     // Set next element in Result Set
-    public void setResultSetToNextElement() {
+    public static void setResultSetToNextElement() {
         try {
             rs.next();
         } catch (SQLException ex) {
@@ -96,7 +96,7 @@ public class ConnectionDB {
         }
     }
 
-    public void setResultSetPreviousElement() {
+    public static void setResultSetPreviousElement() {
         try {
             // Set previous element in Result Set
             rs.previous();

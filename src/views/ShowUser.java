@@ -205,8 +205,7 @@ public class ShowUser extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().first()) {
 
-                int Id = ConnectionDB.getResultSet().getInt("userID");
-                System.out.print(Id);
+                    ConnectionDB.setResultSetToFirstElement();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,9 +216,7 @@ public class ShowUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (ConnectionDB.getResultSet().last()) {
-
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+                   ConnectionDB.setResultSetToLastElement();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);

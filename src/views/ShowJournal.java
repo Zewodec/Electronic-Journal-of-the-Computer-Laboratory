@@ -8,6 +8,7 @@ import database.ConnectionDB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -16,6 +17,8 @@ import net.proteanit.sql.DbUtils;
  */
 public class ShowJournal extends javax.swing.JFrame {
 
+    
+    int Id = 0;
     public static ConnectionDB connectionDB;
 
     /**
@@ -208,8 +211,7 @@ public class ShowJournal extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().previous()) {
 
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,9 +221,9 @@ public class ShowJournal extends javax.swing.JFrame {
     private void NextRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextRecordActionPerformed
         try {
             if (ConnectionDB.getResultSet().next()) {
-
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+                Id+=1;
+                  ConnectionDB.setResultSetToNextElement();
+                  JournalTable.changeSelection(Id, Id, false, false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,10 +233,10 @@ public class ShowJournal extends javax.swing.JFrame {
     private void FirstRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstRecordActionPerformed
         try {
             if (ConnectionDB.getResultSet().first()) {
-
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
-                JournalTable.changeSelection(2, 2, true, false);
+                Id = 0;
+                ConnectionDB.setResultSetToFirstElement();
+                JournalTable.changeSelection(Id, Id, false, false);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,8 +260,8 @@ public class ShowJournal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (ConnectionDB.getResultSet().last()) {
-
-                JournalTable.changeSelection(5,4,false,false);
+                
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -276,6 +278,7 @@ public class ShowJournal extends javax.swing.JFrame {
         }
         String sql = "SELECT * FROM journal";
         ConnectionDB.ExecStatement(sql);
+        
         UpdateTable();
     }//GEN-LAST:event_formWindowOpened
 
@@ -286,7 +289,7 @@ public class ShowJournal extends javax.swing.JFrame {
     public void UpdateTable() {
         String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
         connectionDB.SelectQuery(showItemsQuery);
-        JournalTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
+        JournalTable.setModel(DbUtils.resultSetToTableModel(ConnectionDB.getResultSet()));
     }
 
     /**

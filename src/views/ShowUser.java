@@ -205,7 +205,7 @@ public class ShowUser extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().first()) {
 
-                int Id = ConnectionDB.getResultSet().getInt("Id");
+                int Id = ConnectionDB.getResultSet().getInt("userID");
                 System.out.print(Id);
             }
         } catch (SQLException ex) {

@@ -234,6 +234,7 @@ public class ShowJournal extends javax.swing.JFrame {
 
                 int Id = ConnectionDB.getResultSet().getInt("Id");
                 System.out.print(Id);
+                JournalTable.changeSelection(2, 2, true, false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,8 +259,7 @@ public class ShowJournal extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().last()) {
 
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+                JournalTable.changeSelection(5,4,false,false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);

@@ -274,6 +274,9 @@ public class ShowJournal extends javax.swing.JFrame {
             AddRecord.setVisible(false);
             DeleteRecord.setVisible(false);
         }
+        String sql = "SELECT * FROM journal";
+        ConnectionDB.ExecStatement(sql);
+        UpdateTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void JournalTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JournalTableMouseEntered

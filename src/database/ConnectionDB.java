@@ -56,7 +56,7 @@ public class ConnectionDB {
 
     }
 
-    public void ExecStatement(String query) {
+    public static void ExecStatement(String query) {
         try {
             stmt.execute(query);
         } catch (SQLException ex) {

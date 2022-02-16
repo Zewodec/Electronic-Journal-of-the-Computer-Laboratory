@@ -5,6 +5,7 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
 import labarotoryjournal.LabarotoryJournal;
 
 /**
@@ -37,6 +38,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jDialog1 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -53,6 +55,19 @@ public class LoginFrame extends javax.swing.JFrame {
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jDialog1.setTitle("Login and password");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,6 +140,7 @@ public class LoginFrame extends javax.swing.JFrame {
         String password = passwordField.getText();
         
         if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Поля логіна і пароля обов'язкові!");          
             return;
         }
         
@@ -132,6 +148,8 @@ public class LoginFrame extends javax.swing.JFrame {
             isAdmin = LabarotoryJournal.con.checkUserAdmin(username, password);
             if (isAdmin == 2) {
                 //SHOW MESSAGE INCORECT PASSWORD OR LOGIN
+                JOptionPane.showMessageDialog(null, "Такого користувача не існує!");
+                //LoginFrame.showMessageDialog(null,"Поля логіна і пароля обов'язкові!");
                 return;
             }
                 new MenuFrame().setVisible(true);
@@ -177,6 +195,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

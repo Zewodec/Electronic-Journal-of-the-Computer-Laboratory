@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
+import static views.ShowJournal.connectionDB;
 
 /**
  *
@@ -25,7 +27,7 @@ public class ShowUser extends javax.swing.JFrame {
     }
 
     public void InitGrid() throws SQLException {
-        User_Grid.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
+        UserTable.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
 
     }
 
@@ -39,7 +41,7 @@ public class ShowUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        User_Grid = new javax.swing.JTable();
+        UserTable = new javax.swing.JTable();
         NextRecord = new javax.swing.JButton();
         PreviousRecord = new javax.swing.JButton();
         DeleteRecord = new javax.swing.JButton();
@@ -52,8 +54,13 @@ public class ShowUser extends javax.swing.JFrame {
         setTitle("ShowUserTable");
         setName("ShowUsers"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        User_Grid.setModel(new javax.swing.table.DefaultTableModel(
+        UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -72,8 +79,8 @@ public class ShowUser extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        User_Grid.setName("UserTable"); // NOI18N
-        jScrollPane1.setViewportView(User_Grid);
+        UserTable.setName("UserTable"); // NOI18N
+        jScrollPane1.setViewportView(UserTable);
 
         NextRecord.setLabel("Наступний запис");
         NextRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +242,18 @@ public class ShowUser extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_BackToMenuActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                String sql = "SELECT * FROM users";
+        ConnectionDB.ExecStatement(sql);
+        UpdateTable();
+    }//GEN-LAST:event_formWindowOpened
+
+        public void UpdateTable() {
+        String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
+        connectionDB.SelectQuery(showItemsQuery);
+        UserTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -278,7 +297,7 @@ public class ShowUser extends javax.swing.JFrame {
     private javax.swing.JButton LastRecord;
     private javax.swing.JButton NextRecord;
     private javax.swing.JButton PreviousRecord;
-    private javax.swing.JTable User_Grid;
+    private javax.swing.JTable UserTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

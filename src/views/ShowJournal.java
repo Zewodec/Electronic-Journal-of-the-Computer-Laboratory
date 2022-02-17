@@ -8,6 +8,7 @@ import database.ConnectionDB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -19,6 +20,7 @@ public class ShowJournal extends javax.swing.JFrame {
 
     
     int Id = 0;
+    int deletedRow = 0;
     public static ConnectionDB connectionDB;
 
     /**
@@ -49,6 +51,7 @@ public class ShowJournal extends javax.swing.JFrame {
         AddRecord = new javax.swing.JButton();
         DeleteRecord = new javax.swing.JButton();
         BackToMenu = new javax.swing.JButton();
+        UpdateTable = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Journal(Admin)");
@@ -141,18 +144,24 @@ public class ShowJournal extends javax.swing.JFrame {
             }
         });
 
+        UpdateTable.setText("Перезавантажити таблицю");
+        UpdateTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BackToMenu)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BackToMenu))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(FirstRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LastRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,14 +172,15 @@ public class ShowJournal extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AddRecord)
-                            .addComponent(DeleteRecord))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(DeleteRecord)))
+                    .addComponent(UpdateTable))
+                .addGap(196, 196, 196))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,8 +194,10 @@ public class ShowJournal extends javax.swing.JFrame {
                         .addComponent(NextRecord)
                         .addGap(31, 31, 31)
                         .addComponent(PreviousRecord)))
-                .addGap(43, 43, 43)
-                .addComponent(BackToMenu)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackToMenu)
+                    .addComponent(UpdateTable))
                 .addContainerGap())
         );
 
@@ -194,11 +206,12 @@ public class ShowJournal extends javax.swing.JFrame {
 
     private void PreviousRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousRecordActionPerformed
         try {
-            if (ConnectionDB.getResultSet().previous()) {
-
-
+            if(ConnectionDB.getResultSet().previous()){
+                Id-=1;
+            JournalTable.changeSelection(Id, 0, false, false);
+            
             }
-        } catch (SQLException ex) {
+            } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_PreviousRecordActionPerformed
@@ -231,7 +244,12 @@ public class ShowJournal extends javax.swing.JFrame {
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
-
+       int response =  JOptionPane.showConfirmDialog(null, "Ви дійсно хочете видалити запис?");
+        String deleteSql = "DELETE FROM journal WHERE ItemID = " + Id;
+        if(response == JOptionPane.YES_OPTION){
+        ConnectionDB.ExecStatement(deleteSql);
+        UpdateTable();
+        }           
     }//GEN-LAST:event_DeleteRecordActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
@@ -243,7 +261,8 @@ public class ShowJournal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (ConnectionDB.getResultSet().last()) {
-                
+                Id = ConnectionDB.getResultSet().getInt("ItemID");
+                JournalTable.changeSelection(JournalTable.getRowCount() - 1, 0, false, false);
                 
             }
         } catch (SQLException ex) {
@@ -283,6 +302,10 @@ public class ShowJournal extends javax.swing.JFrame {
     private void JournalTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JournalTableMouseEntered
 //        UpdateTable();
     }//GEN-LAST:event_JournalTableMouseEntered
+
+    private void UpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateTableActionPerformed
+        UpdateTable();
+    }//GEN-LAST:event_UpdateTableActionPerformed
 
     public void UpdateTable() {
         String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
@@ -334,6 +357,7 @@ public class ShowJournal extends javax.swing.JFrame {
     private javax.swing.JButton LastRecord;
     private javax.swing.JButton NextRecord;
     private javax.swing.JButton PreviousRecord;
+    private javax.swing.JButton UpdateTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

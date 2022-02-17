@@ -29,21 +29,6 @@ public class ShowJournal extends javax.swing.JFrame {
         connectionDB = new ConnectionDB();
         AddRecord.setVisible(false);
         DeleteRecord.setVisible(false);
-        
-        Thread updateTable = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {                    
-                    try {
-                        UpdateTable();
-                        Thread.sleep(10000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(ShowJournal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        });
-        updateTable.start();
     }
 
     /**
@@ -222,11 +207,10 @@ public class ShowJournal extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().next()) {
                 Id+=1;
-                  ConnectionDB.setResultSetToNextElement();
-                  JournalTable.changeSelection(Id, Id, false, false);
+                JournalTable.changeSelection(Id, 0, false, false);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ShowJournal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_NextRecordActionPerformed
 
@@ -234,8 +218,7 @@ public class ShowJournal extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().first()) {
                 Id = 0;
-                ConnectionDB.setResultSetToFirstElement();
-                JournalTable.changeSelection(Id, Id, false, false);
+                JournalTable.changeSelection(Id, 0, false, false);
                 
             }
         } catch (SQLException ex) {
@@ -280,10 +263,25 @@ public class ShowJournal extends javax.swing.JFrame {
         ConnectionDB.ExecStatement(sql);
         
         UpdateTable();
+        
+//        Thread updateTable = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (true) {                    
+//                    try {
+//                        UpdateTable();
+//                        Thread.sleep(10000);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(ShowJournal.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//            }
+//        });
+//        updateTable.start();
     }//GEN-LAST:event_formWindowOpened
 
     private void JournalTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JournalTableMouseEntered
-        UpdateTable();
+//        UpdateTable();
     }//GEN-LAST:event_JournalTableMouseEntered
 
     public void UpdateTable() {

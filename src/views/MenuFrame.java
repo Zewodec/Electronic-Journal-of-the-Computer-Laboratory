@@ -41,6 +41,7 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        UserFrameOpenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_people_black_24dp.png"))); // NOI18N
         UserFrameOpenButton.setText("Користувачі");
         UserFrameOpenButton.setEnabled(false);
         UserFrameOpenButton.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +50,7 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        JournalFrameOpenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_menu_book_black_24dp.png"))); // NOI18N
         JournalFrameOpenButton.setText("Журнал");
         JournalFrameOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +58,7 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        LogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_logout_black_24dp.png"))); // NOI18N
         LogOutButton.setText("Вийти з аккаунту");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +66,7 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
         ExitButton.setText("Вихід з програми");
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,37 +74,37 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("вибирай, хуйло");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg/class_journals_istock_000021675732xsmall.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(LogOutButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(ExitButton)
-                .addGap(38, 38, 38))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JournalFrameOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(7, 7, 7)
-                            .addComponent(jLabel1))
-                        .addComponent(UserFrameOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(UserFrameOpenButton, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(JournalFrameOpenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LogOutButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addComponent(ExitButton)))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(JournalFrameOpenButton)
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addComponent(UserFrameOpenButton)
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

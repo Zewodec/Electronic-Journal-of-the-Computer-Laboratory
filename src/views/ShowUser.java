@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 import static views.ShowJournal.connectionDB;
@@ -19,17 +20,16 @@ import static views.ShowJournal.connectionDB;
  */
 public class ShowUser extends javax.swing.JFrame {
 
+    int Id = 0;
+    public static ConnectionDB connectionDB;        
     /**
      * Creates new form ShowUser
      */
     public ShowUser() {
         initComponents();
+        connectionDB = new ConnectionDB();
     }
 
-    public void InitGrid() throws SQLException {
-        UserTable.setModel(resultSetToTableModel(ConnectionDB.getResultSet()));
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,9 +49,12 @@ public class ShowUser extends javax.swing.JFrame {
         FirsrRecord = new javax.swing.JButton();
         LastRecord = new javax.swing.JButton();
         BackToMenu = new javax.swing.JButton();
+        UpdateButton = new javax.swing.JButton();
+        UpdateTable = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ShowUserTable");
+        setTitle("Користувачі");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("ShowUsers"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -82,6 +85,7 @@ public class ShowUser extends javax.swing.JFrame {
         UserTable.setName("UserTable"); // NOI18N
         jScrollPane1.setViewportView(UserTable);
 
+        NextRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_arrow_right_alt_black_24dp.png"))); // NOI18N
         NextRecord.setLabel("Наступний запис");
         NextRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +93,7 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        PreviousRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_keyboard_backspace_black_24dp.png"))); // NOI18N
         PreviousRecord.setText("Попередній запис");
         PreviousRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +101,7 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        DeleteRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
         DeleteRecord.setText("Видалити запис");
         DeleteRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +109,7 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        AddRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_add_black_24dp.png"))); // NOI18N
         AddRecord.setText("Добавити запис");
         AddRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,44 +138,66 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        UpdateButton.setText("Перезавантаження таблиці");
+        UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateButtonActionPerformed(evt);
+            }
+        });
+
+        UpdateTable.setText("Перезавантажити таблицю");
+        UpdateTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PreviousRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NextRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LastRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FirsrRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(BackToMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DeleteRecord)
-                    .addComponent(AddRecord))
-                .addGap(66, 66, 66))
-            .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BackToMenu)
+                        .addGap(29, 29, 29)
+                        .addComponent(UpdateTable))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PreviousRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NextRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LastRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FirsrRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddRecord)
+                    .addComponent(DeleteRecord))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextRecord)
-                    .addComponent(DeleteRecord)
-                    .addComponent(FirsrRecord))
+                    .addComponent(FirsrRecord)
+                    .addComponent(AddRecord))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviousRecord)
-                    .addComponent(AddRecord)
                     .addComponent(LastRecord)
-                    .addComponent(BackToMenu))
-                .addGap(31, 31, 31))
+                    .addComponent(DeleteRecord))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackToMenu)
+                    .addComponent(UpdateTable))
+                .addContainerGap())
         );
 
         pack();
@@ -179,8 +208,8 @@ public class ShowUser extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().next()) {
 
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+                Id+=1;
+                UserTable.changeSelection(Id, 0, false, false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,9 +220,8 @@ public class ShowUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (ConnectionDB.getResultSet().previous()) {
-
-                int Id = ConnectionDB.getResultSet().getInt("Id");
-                System.out.print(Id);
+                Id-=1;
+            UserTable.changeSelection(Id, 0, false, false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,7 +233,8 @@ public class ShowUser extends javax.swing.JFrame {
         try {
             if (ConnectionDB.getResultSet().first()) {
 
-                    ConnectionDB.setResultSetToFirstElement();
+                Id = 0;
+                UserTable.changeSelection(Id, 0, false, false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +245,9 @@ public class ShowUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (ConnectionDB.getResultSet().last()) {
-                   ConnectionDB.setResultSetToLastElement();
+                                   Id = ConnectionDB.getResultSet().getInt("UserID");
+                UserTable.changeSelection(UserTable.getRowCount() - 1, 0, false, false);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,12 +255,16 @@ public class ShowUser extends javax.swing.JFrame {
     }//GEN-LAST:event_LastRecordActionPerformed
 
     private void DeleteRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRecordActionPerformed
-        // TODO add your handling code here:
+               int response =  JOptionPane.showConfirmDialog(null, "Ви дійсно хочете видалити запис?");
+        String deleteSql = "DELETE FROM users WHERE UserID = " + Id;
+        if(response == JOptionPane.YES_OPTION){
+        ConnectionDB.ExecStatement(deleteSql);
+        UpdateTable();
     }//GEN-LAST:event_DeleteRecordActionPerformed
-
+   }
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
-        // TODO add your handling code here:
-
+                new AddUser().setVisible(true);
+                UpdateTable();
 
     }//GEN-LAST:event_AddRecordActionPerformed
 
@@ -245,8 +280,17 @@ public class ShowUser extends javax.swing.JFrame {
         UpdateTable();
     }//GEN-LAST:event_formWindowOpened
 
+    private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
+        UpdateTable();
+    }//GEN-LAST:event_UpdateButtonActionPerformed
+
+    private void UpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateTableActionPerformed
+        UpdateTable();
+        
+    }//GEN-LAST:event_UpdateTableActionPerformed
+
         public void UpdateTable() {
-        String showItemsQuery = "SELECT ItemID, ItemNum, Description, Date_ADD, Date_Last_Update FROM Journal";
+        String showItemsQuery = "SELECT UserID, Username, Password, isAdmin, Last_Login FROM users";
         connectionDB.SelectQuery(showItemsQuery);
         UserTable.setModel(DbUtils.resultSetToTableModel(connectionDB.getResultSet()));
     }
@@ -294,7 +338,9 @@ public class ShowUser extends javax.swing.JFrame {
     private javax.swing.JButton LastRecord;
     private javax.swing.JButton NextRecord;
     private javax.swing.JButton PreviousRecord;
-    private javax.swing.JTable UserTable;
+    private javax.swing.JButton UpdateButton;
+    private javax.swing.JButton UpdateTable;
+    public static javax.swing.JTable UserTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

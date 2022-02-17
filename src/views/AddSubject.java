@@ -42,14 +42,7 @@ public class AddSubject extends javax.swing.JFrame {
 
 
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_add_black_24dp.png"))); // NOI18N
-        jButton1.setText("Добавити");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addRecordButtonActionPerformed(evt);
-            }
-        });
+
 
         CloseWindowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
         CloseWindowButton.setText("Закрити вікно");
@@ -109,13 +102,13 @@ public class AddSubject extends javax.swing.JFrame {
         int itemNumber = Integer.parseInt(ItemNumberField.getText());
         String describtion = DescribtionTextArea.getText();
         
+        
         ShowJournal.connectionDB.AddJournalRecord(itemNumber, describtion);
         
         dispose();
     }//GEN-LAST:event_addRecordButtonActionPerformed
 
     private void CloseWindowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButtonActionPerformed
-//        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_CloseWindowButtonActionPerformed
 

@@ -20,16 +20,16 @@ import static views.ShowJournal.connectionDB;
  */
 public class ShowUser extends javax.swing.JFrame {
 
+    int Id = 0;
+    public static ConnectionDB connectionDB;        
     /**
      * Creates new form ShowUser
      */
     public ShowUser() {
         initComponents();
+        connectionDB = new ConnectionDB();
     }
 
-    int Id = 0;
-    public static ConnectionDB connectionDB;
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,6 +50,7 @@ public class ShowUser extends javax.swing.JFrame {
         LastRecord = new javax.swing.JButton();
         BackToMenu = new javax.swing.JButton();
         UpdateButton = new javax.swing.JButton();
+        UpdateTable = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Користувачі");
@@ -144,17 +145,25 @@ public class ShowUser extends javax.swing.JFrame {
             }
         });
 
+        UpdateTable.setText("Перезавантажити таблицю");
+        UpdateTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(BackToMenu))
+                        .addComponent(BackToMenu)
+                        .addGap(29, 29, 29)
+                        .addComponent(UpdateTable))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -169,15 +178,12 @@ public class ShowUser extends javax.swing.JFrame {
                     .addComponent(AddRecord)
                     .addComponent(DeleteRecord))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addGap(32, 32, 32)
-
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextRecord)
                     .addComponent(FirsrRecord)
@@ -185,12 +191,12 @@ public class ShowUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PreviousRecord)
-
                     .addComponent(LastRecord)
                     .addComponent(DeleteRecord))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(BackToMenu)
-
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackToMenu)
+                    .addComponent(UpdateTable))
                 .addContainerGap())
         );
 
@@ -257,8 +263,8 @@ public class ShowUser extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteRecordActionPerformed
    }
     private void AddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRecordActionPerformed
-        
-            new AddUser().setVisible(true);
+                new AddUser().setVisible(true);
+                UpdateTable();
 
     }//GEN-LAST:event_AddRecordActionPerformed
 
@@ -277,6 +283,11 @@ public class ShowUser extends javax.swing.JFrame {
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
         UpdateTable();
     }//GEN-LAST:event_UpdateButtonActionPerformed
+
+    private void UpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateTableActionPerformed
+        UpdateTable();
+        
+    }//GEN-LAST:event_UpdateTableActionPerformed
 
         public void UpdateTable() {
         String showItemsQuery = "SELECT UserID, Username, Password, isAdmin, Last_Login FROM users";
@@ -328,7 +339,8 @@ public class ShowUser extends javax.swing.JFrame {
     private javax.swing.JButton NextRecord;
     private javax.swing.JButton PreviousRecord;
     private javax.swing.JButton UpdateButton;
-    public javax.swing.JTable UserTable;
+    private javax.swing.JButton UpdateTable;
+    public static javax.swing.JTable UserTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

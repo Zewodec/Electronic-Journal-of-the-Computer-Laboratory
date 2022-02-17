@@ -142,16 +142,16 @@ public class ConnectionDB {
     }
     
 
-    public void AddUserRecord(int userId, String username, String password, boolean isAdmin){
+    public void AddUserRecord( String username, String password, boolean isAdmin){
         
         try {
-            String addRecordQuery = "INSERT  INTO JOURNAL (ItemNum, Description) VALUES(?,?)";
+            String addRecordQuery = "INSERT  INTO USERS (Username, Password, isAdmin) VALUES(?,?,?)";
             PreparedStatement preparedStatement = con.prepareStatement(addRecordQuery);
             
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
-            preparedStatement.setBoolean(4, isAdmin);
+            
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setBoolean(3, isAdmin);
             
             preparedStatement.execute();
         } catch (SQLException ex) {

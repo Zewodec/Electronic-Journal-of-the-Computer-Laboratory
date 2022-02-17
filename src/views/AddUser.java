@@ -30,8 +30,7 @@ public class AddUser extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         CloseWindowButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-
-        jCheckBox1 = new javax.swing.JCheckBox();
+        isAdminButton = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
@@ -39,9 +38,12 @@ public class AddUser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        CloseWindowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
         CloseWindowButton.setText("Закрити вікно");
-
+        CloseWindowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseWindowButtonActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_add_black_24dp.png"))); // NOI18N
         jButton2.setText("Добавити");
@@ -51,10 +53,8 @@ public class AddUser extends javax.swing.JFrame {
             }
         });
 
-
-        jCheckBox1.setText("Адміністратор");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-
+        isAdminButton.setText("Адміністратор");
+        isAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 isAdminButtonActionPerformed(evt);
             }
@@ -71,49 +71,37 @@ public class AddUser extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jButton2)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(CloseWindowButton)
                 .addGap(42, 42, 42))
-
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(14, 14, 14)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
+                    .addComponent(isAdminButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(usernameField)
                         .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)))
                 .addGap(53, 53, 53))
-
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-
-                .addGap(76, 76, 76)
+                .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-
                             .addComponent(jLabel2)
                             .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)))
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
+                .addComponent(isAdminButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CloseWindowButton)
                     .addComponent(jButton2))
@@ -130,14 +118,19 @@ public class AddUser extends javax.swing.JFrame {
     
     //addRecordButton
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int userId = Integer.parseInt(idTextArea.getText());
-        String username = usernameTextArea.getText();
-        String password = passwordTextArea.getText();
-        boolean isAdimn = isAdminButton.isSelected();
         
-        ShowUser.UserTable.connectionDB.AddUserRecord();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean isAdmin = isAdminButton.isSelected();
+        
+        ShowUser.connectionDB.AddUserRecord(username,password,isAdmin);
+        dispose();
 //ShowUser.UserTable.connectionDB.AddUserRecord(userId,username,password,isAdmin);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CloseWindowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_CloseWindowButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,13 +171,11 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JButton CloseWindowButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-
+    private javax.swing.JCheckBox isAdminButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField usernameField;
-
     // End of variables declaration//GEN-END:variables
 }

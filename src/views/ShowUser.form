@@ -34,13 +34,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-
           <Component id="jScrollPane1" alignment="0" pref="806" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BackToMenu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="UpdateTable" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
@@ -61,7 +62,6 @@
                   <Component id="DeleteRecord" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,9 +69,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="305" max="-2" attributes="0"/>
-
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="NextRecord" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="FirsrRecord" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,12 +79,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PreviousRecord" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LastRecord" alignment="3" min="-2" max="-2" attributes="0"/>
-
                   <Component id="DeleteRecord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Component id="BackToMenu" min="-2" max="-2" attributes="0"/>
-
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="BackToMenu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="UpdateTable" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -146,7 +145,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -225,6 +224,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="UpdateTable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x41f;&#x435;&#x440;&#x435;&#x437;&#x430;&#x432;&#x430;&#x43d;&#x442;&#x430;&#x436;&#x438;&#x442;&#x438; &#x442;&#x430;&#x431;&#x43b;&#x438;&#x446;&#x44e;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateTableActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

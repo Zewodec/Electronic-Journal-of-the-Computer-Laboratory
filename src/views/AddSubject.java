@@ -28,11 +28,11 @@ public class AddSubject extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        addRecordButton = new javax.swing.JButton();
         CloseWindowButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         DescribtionTextArea = new javax.swing.JTextArea();
         ItemNumberField = new javax.swing.JTextField();
+        CloseWindowButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,12 +40,8 @@ public class AddSubject extends javax.swing.JFrame {
 
         jLabel3.setText("Опис");
 
-
-
-
-
-        CloseWindowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
-        CloseWindowButton.setText("Закрити вікно");
+        CloseWindowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_add_black_24dp.png"))); // NOI18N
+        CloseWindowButton.setText("Добавити");
         CloseWindowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CloseWindowButtonActionPerformed(evt);
@@ -56,13 +52,22 @@ public class AddSubject extends javax.swing.JFrame {
         DescribtionTextArea.setRows(5);
         jScrollPane2.setViewportView(DescribtionTextArea);
 
+        CloseWindowButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
+        CloseWindowButton1.setText("Закрити вікно");
+        CloseWindowButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseWindowButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CloseWindowButton)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -70,12 +75,13 @@ public class AddSubject extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2)
-                            .addComponent(ItemNumberField)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addRecordButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CloseWindowButton)))
+                            .addComponent(ItemNumberField))))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(254, Short.MAX_VALUE)
+                    .addComponent(CloseWindowButton1)
+                    .addGap(17, 17, 17)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,29 +94,31 @@ public class AddSubject extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addRecordButton)
-                    .addComponent(CloseWindowButton))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(CloseWindowButton)
+                .addGap(37, 37, 37))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(301, Short.MAX_VALUE)
+                    .addComponent(CloseWindowButton1)
+                    .addGap(38, 38, 38)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordButtonActionPerformed
-        int itemNumber = Integer.parseInt(ItemNumberField.getText());
-        String describtion = DescribtionTextArea.getText();
-        
-        
-        ShowJournal.connectionDB.AddJournalRecord(itemNumber, describtion);
-        
-        dispose();
-    }//GEN-LAST:event_addRecordButtonActionPerformed
-
     private void CloseWindowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButtonActionPerformed
         dispose();
     }//GEN-LAST:event_CloseWindowButtonActionPerformed
+
+    private void CloseWindowButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButton1ActionPerformed
+        int itemNumber = Integer.parseInt(ItemNumberField.getText());
+        String describtion = DescribtionTextArea.getText();
+
+
+        ShowJournal.connectionDB.AddJournalRecord(itemNumber, describtion);
+            
+    }//GEN-LAST:event_CloseWindowButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,9 +157,9 @@ public class AddSubject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseWindowButton;
+    private javax.swing.JButton CloseWindowButton1;
     private javax.swing.JTextArea DescribtionTextArea;
     private javax.swing.JTextField ItemNumberField;
-    private javax.swing.JButton addRecordButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

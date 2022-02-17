@@ -176,8 +176,10 @@ public class ConnectionDB {
 
             if (rs.getBoolean("ISADMIN")) {
                 value = 1;
+                UpdateLoginTimeStamp(username, password);
             } else {
             value = 0;
+                UpdateLoginTimeStamp(username, password);
             }
             
 System.out.println("Value!!!==== " + value);
@@ -188,6 +190,21 @@ System.out.println("Value!!!==== " + value);
         }
         System.out.println("Value!!!==== " + value);
         return value;
+    }
+    
+    private void UpdateLoginTimeStamp(String username, String password){
+        try {
+            String UpdateLoginTimeStamp = "UPDATE users SET Last_Login = CURRENT_TIMESTAMP  WHERE USERNAME = ? AND PASSWORD = ?";
+
+            PreparedStatement preparedUpdateLoginTimeStampQuery = con.prepareStatement(UpdateLoginTimeStamp);
+
+            preparedUpdateLoginTimeStampQuery.setString(1, username);
+            preparedUpdateLoginTimeStampQuery.setString(2, password);
+
+            preparedUpdateLoginTimeStampQuery.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

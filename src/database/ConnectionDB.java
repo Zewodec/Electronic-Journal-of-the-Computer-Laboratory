@@ -138,10 +138,28 @@ public class ConnectionDB {
             preparedStatement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-               
+        }           
     }
+    
 
+    public void AddUserRecord(int userId, String username, String password, boolean isAdmin){
+        
+        try {
+            String addRecordQuery = "INSERT  INTO JOURNAL (ItemNum, Description) VALUES(?,?)";
+            PreparedStatement preparedStatement = con.prepareStatement(addRecordQuery);
+            
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            preparedStatement.setBoolean(4, isAdmin);
+            
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+    }
+    
+    
     public int checkUserAdmin(String username, String password) {
         int value = 0;
         try {

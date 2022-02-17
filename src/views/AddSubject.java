@@ -4,6 +4,8 @@
  */
 package views;
 
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Konovalov
@@ -15,6 +17,7 @@ public class AddSubject extends javax.swing.JFrame {
      */
     public AddSubject() {
         initComponents();
+        
     }
 
     /**
@@ -34,7 +37,7 @@ public class AddSubject extends javax.swing.JFrame {
         ItemNumberField = new javax.swing.JTextField();
         CloseWindowButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Номер предмету");
 
@@ -105,6 +108,7 @@ public class AddSubject extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CloseWindowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButtonActionPerformed

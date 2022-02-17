@@ -135,6 +135,7 @@ public class LoginFrame extends javax.swing.JFrame {
         usernameField.getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
@@ -151,7 +152,7 @@ public class LoginFrame extends javax.swing.JFrame {
             if (isAdmin == 2) {
                 //SHOW MESSAGE INCORECT PASSWORD OR LOGIN
                 JOptionPane.showMessageDialog(null, "Такого користувача не існує!");
-                //LoginFrame.showMessageDialog(null,"Поля логіна і пароля обов'язкові!");
+                
                 return;
             }
                 new MenuFrame().setVisible(true);

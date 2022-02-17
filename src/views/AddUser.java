@@ -12,9 +12,9 @@ public class AddUser extends javax.swing.JFrame {
 
     /**
      * Creates new form AddUser
-     */
+     */   
     public AddUser() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -36,7 +36,7 @@ public class AddUser extends javax.swing.JFrame {
         usernameField = new javax.swing.JTextField();
         passwordField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         CloseWindowButton.setText("Закрити вікно");
         CloseWindowButton.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +109,7 @@ public class AddUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void isAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isAdminButtonActionPerformed
@@ -125,7 +126,7 @@ public class AddUser extends javax.swing.JFrame {
         
         ShowUser.connectionDB.AddUserRecord(username,password,isAdmin);
         dispose();
-//ShowUser.UserTable.connectionDB.AddUserRecord(userId,username,password,isAdmin);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CloseWindowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseWindowButtonActionPerformed

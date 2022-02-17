@@ -72,6 +72,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Розробка програми електронний журналкомп’ютерної лабораторії");
+        setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setName("frameLogin"); // NOI18N
         setResizable(false);
@@ -87,6 +88,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Пароль:");
 
+        LoginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_login_black_24dp.png"))); // NOI18N
         LoginButton.setText("Авторизуватись");
         LoginButton.setName("loginButton"); // NOI18N
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +112,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addComponent(usernameField)
                     .addComponent(passwordField)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +127,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LoginButton)
                 .addGap(52, 52, 52))
         );

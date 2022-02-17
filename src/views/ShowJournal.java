@@ -92,6 +92,7 @@ public class ShowJournal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(JournalTable);
 
+        NextRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_arrow_right_alt_black_24dp.png"))); // NOI18N
         NextRecord.setText("Наступний запис");
         NextRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +100,7 @@ public class ShowJournal extends javax.swing.JFrame {
             }
         });
 
+        PreviousRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_keyboard_backspace_black_24dp.png"))); // NOI18N
         PreviousRecord.setText("Попередній запис");
         PreviousRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +122,7 @@ public class ShowJournal extends javax.swing.JFrame {
             }
         });
 
+        AddRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_add_black_24dp.png"))); // NOI18N
         AddRecord.setText("Добавити запис");
         AddRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +130,7 @@ public class ShowJournal extends javax.swing.JFrame {
             }
         });
 
+        DeleteRecord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/outline_close_black_24dp.png"))); // NOI18N
         DeleteRecord.setText("Видалити запис");
         DeleteRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +174,7 @@ public class ShowJournal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

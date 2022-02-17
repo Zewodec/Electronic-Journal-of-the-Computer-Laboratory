@@ -60,7 +60,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -147,6 +147,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="NextRecord">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/icons/outline_arrow_right_alt_black_24dp.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x438;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
       <Events>
@@ -155,6 +158,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="PreviousRecord">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/icons/outline_keyboard_backspace_black_24dp.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43f;&#x435;&#x440;&#x435;&#x434;&#x43d;&#x456;&#x439; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
       <Events>
@@ -179,6 +185,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="AddRecord">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/icons/outline_add_black_24dp.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x431;&#x430;&#x432;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
       <Events>
@@ -187,6 +196,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="DeleteRecord">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/icons/outline_close_black_24dp.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x438; &#x437;&#x430;&#x43f;&#x438;&#x441;"/>
       </Properties>
       <Events>

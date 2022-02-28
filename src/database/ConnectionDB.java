@@ -23,9 +23,9 @@ import java.util.logging.Logger;
 public class ConnectionDB {
 
     // Host data to connect
-    final private String host = "jdbc:mysql://129.159.253.88:3306/kursova";
-    final private String uName = "kursova";
-    final private String uPass = "1234";
+    final private String host = "jdbc:mysql://YOUR_IP:3306/YOUR_DB_NAME";
+    final private String uName = "YOUR_DB_USERNAME";
+    final private String uPass = "YOUR_DB_PASSWORD";
 
     private static Connection con; // Connection to DB
     private static Statement stmt; // Statement for using query etc
